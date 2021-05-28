@@ -2,9 +2,9 @@ use cargo::util::command_prelude::ArgMatchesExt;
 use cargo::CliResult;
 use cargo::Config;
 
-use cargo_c::build::{cbuild, config_configure};
+use cargo_c::build::config_configure;
 use cargo_c::cli::subcommand_install;
-use cargo_c::install::cinstall;
+use cargo_c::workspace::cinstall_ws;
 
 use structopt::clap::*;
 
@@ -40,10 +40,7 @@ fn main() -> CliResult {
 
     let mut ws = subcommand_args.workspace(&config)?;
 
-    let (build_targets, install_paths, capi_config, _, _) =
-        cbuild(&mut ws, &config, &subcommand_args, "release")?;
-
-    cinstall(&ws, &capi_config, build_targets, install_paths)?;
+    cinstall_ws(&mut ws, &config, &subcommand_args)?;
 
     Ok(())
 }

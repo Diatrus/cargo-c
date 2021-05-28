@@ -4,3 +4,4 @@ pub mod cli;
 pub mod install;
 pub mod pkg_config_gen;
 pub mod target;
+pub mod workspace;

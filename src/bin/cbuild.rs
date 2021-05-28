@@ -2,8 +2,9 @@ use cargo::util::command_prelude::ArgMatchesExt;
 use cargo::CliResult;
 use cargo::Config;
 
-use cargo_c::build::*;
+use cargo_c::build::config_configure;
 use cargo_c::cli::subcommand_build;
+use cargo_c::workspace::cbuild_ws;
 
 use structopt::clap::*;
 
@@ -40,7 +41,7 @@ fn main() -> CliResult {
 
     let mut ws = subcommand_args.workspace(&config)?;
 
-    let _ = cbuild(&mut ws, &config, &subcommand_args, "dev")?;
+    let _ = cbuild_ws(&mut ws, &config, &subcommand_args, "dev")?;
 
     Ok(())
 }
